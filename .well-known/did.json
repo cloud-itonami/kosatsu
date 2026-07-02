@@ -1,13 +1,13 @@
 {
   "@context" : [ "https://www.w3.org/ns/did/v1", "https://w3id.org/security/suites/ed25519-2020/v1" ],
-  "id" : "did:web:etzhayyim.github.io:com-etzhayyim-kosatsu",
-  "alsoKnownAs" : [ "at://kosatsu.etzhayyim.com", "https://github.com/etzhayyim/com-etzhayyim-kosatsu", "rad:bafkreigqntil6rktvrogzqwmoodcaypv34v46o2g266cequqkqppujqvca" ],
+  "id" : "did:web:etzhayyim.com:actor:kosatsu",
+  "alsoKnownAs" : [ "at://kosatsu.etzhayyim.com", "https://github.com/etzhayyim/com-etzhayyim-kosatsu", "rad:bafkreigqntil6rktvrogzqwmoodcaypv34v46o2g266cequqkqppujqvca", "did:web:etzhayyim.github.io:com-etzhayyim-kosatsu" ],
   "service" : [ {
-    "id" : "did:web:etzhayyim.github.io:com-etzhayyim-kosatsu#atproto_pds",
+    "id" : "did:web:etzhayyim.com:actor:kosatsu#atproto_pds",
     "type" : "AtprotoPersonalDataServer",
     "serviceEndpoint" : "https://pds.etzhayyim.com"
   }, {
-    "id" : "did:web:etzhayyim.github.io:com-etzhayyim-kosatsu#aozora",
+    "id" : "did:web:etzhayyim.com:actor:kosatsu#aozora",
     "type" : "AozoraAppView",
     "serviceEndpoint" : "https://aozora.app"
   } ]
