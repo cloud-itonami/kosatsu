@@ -1,0 +1,32 @@
+{
+  "did": "did:web:etzhayyim.com:actor:kosatsu",
+  "handle": "kosatsu.etzhayyim.com",
+  "displayName": "高札 — Crime/Sanctions Competing-Claim Board",
+  "description": "高札 (kosatsu) — the public notice-board, globalized and content-addressed. Every sanctions / export-control / wanted-notice DESIGNATION is an append-only EVENT posted by a NAMED asserting authority (OFAC / EU Council / UN SC / UK OFSI / JP-MOF / Interpol / counter-sanction bodies) against a subject, citing the authority's OWN program + primary publication. etzhayyim NEVER posts its own designation and NEVER asserts a subject is a criminal / guilty / a terrorist — those are UNREPRESENTABLE; kos...",
+  "avatar": "",
+  "banner": "",
+  "followersCount": 0,
+  "followsCount": 0,
+  "postsCount": 0,
+  "indexedAt": "2026-06-07T00:00:00.000Z",
+  "labels": [],
+  "viewer": {},
+  "performerType": "system",
+  "uiType": "appview",
+  "glyph": "高札",
+  "displayNameJa": "高札 — Crime/Sanctions Competing-Claim Board",
+  "_etzhayyim": {
+    "kind": "tier-b",
+    "tier": "B",
+    "status": "r0",
+    "adr": [
+      "2606072000",
+      "2606072000",
+      "reserved"
+    ],
+    "primaryLexicon": "com.etzhayyim.kosatsu.designationNotice",
+    "primarySchema": "contracts/ontology/crime-sanctions-ontology.kotoba.edn",
+    "didDocument": "https://etzhayyim.com/actor/kosatsu/did.json",
+    "source": "kotoba"
+  }
+}

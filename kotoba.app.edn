@@ -1,10 +1,10 @@
 ;; kotoba.app.edn — actor:kosatsu 高札 KOTOBA Mesh application manifest (generated scaffold).
-;; Deploy:  kotoba app deploy kotoba.app.edn  (compiles methods/mesh.clj → CID → control datoms)
+;; Deploy:  kotoba app deploy kotoba.app.edn  (compiles src/kosatsu/mesh.clj → CID → control datoms)
 {:kotoba.app/name    "kosatsu"
  :kotoba.app/version "0.1.0"
  :kotoba.app/components
  [{:name     "kosatsu"
-   :src      "methods/mesh.clj"                  ; Clojure default → run + on-kse
+   :src      "src/kosatsu/mesh.clj"                  ; Clojure default → run + on-kse
    :scale    1
    :triggers [{:type :kse :topic "etzhayyim/actor/kosatsu"}]  ; observatory on-kse (ADR-2606230001 §4)
    :requires #{:cap/kqe}}]

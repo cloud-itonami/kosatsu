@@ -1,0 +1,10 @@
+{:catalog/version 1 :catalog/canonical-format :edn :actor :kosatsu
+ :ontology {:canonical/path "contracts/ontology/crime-sanctions-ontology.kotoba.edn"}
+ :contracts [{:name :asserting-authority :canonical/path "contracts/lexicons/assertingAuthority.edn" :wire/path "wire/contracts/lexicons/assertingAuthority.json"}
+             {:name :competing-claim-view :canonical/path "contracts/lexicons/competingClaimView.edn" :wire/path "wire/contracts/lexicons/competingClaimView.json"}
+             {:name :delisting-event :canonical/path "contracts/lexicons/delistingEvent.edn" :wire/path "wire/contracts/lexicons/delistingEvent.json"}
+             {:name :designation-notice :canonical/path "contracts/lexicons/designationNotice.edn" :wire/path "wire/contracts/lexicons/designationNotice.json"}
+             {:name :network-post :canonical/path "contracts/lexicons/networkPost.edn" :wire/path "wire/contracts/lexicons/networkPost.json"}
+             {:name :subject-entity :canonical/path "contracts/lexicons/subjectEntity.edn" :wire/path "wire/contracts/lexicons/subjectEntity.json"}]
+ :identity [{:kind :did-document :wire/path "wire/identity/did.json"}
+            {:kind :actor-profile :wire/path "wire/identity/profile.json"}]}

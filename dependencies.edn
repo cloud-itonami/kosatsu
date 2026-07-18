@@ -1,0 +1,2 @@
+{:dependencies/version 1 :runtime #{:clojure :cljc :babashka}
+ :libraries [] :deprecated #{:go :tinygo :python-twin :wasm-build} :go/artifacts []}

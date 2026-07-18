@@ -1,0 +1,5 @@
+;; contracts/schema.edn — Datomic/Datascript-compatible schema (auto-generated).
+;; :db/ident attribute list. No Datomic-specific keys (:db.install/_attribute etc).
+;; Do not hand-edit — regeneration overwrites.
+
+[#:db{:ident :kotoba.app/components, :valueType :db.type/string, :cardinality :db.cardinality/one} #:db{:ident :kotoba.app/name, :valueType :db.type/string, :cardinality :db.cardinality/one} #:db{:ident :kotoba.app/placement, :valueType :db.type/string, :cardinality :db.cardinality/one} #:db{:ident :kotoba.app/version, :valueType :db.type/string, :cardinality :db.cardinality/one}]

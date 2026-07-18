@@ -1,0 +1,133 @@
+;; crime-sanctions-ontology.kotoba.edn
+;; 高札 (kosatsu) — crime / sanctions COMPETING-CLAIM observatory ontology (ADR-2606072000)
+;;
+;; 高札 (kōsatsu) was the public notice-board where each authority posted its own edicts,
+;; bounties, and designations. kosatsu mirrors that, globally and append-only: every
+;; sanctions / export-control / wanted-notice DESIGNATION is an EVENT posted by a NAMED
+;; asserting authority (OFAC / EU / UN / UK-OFSI / JP-MOF / Interpol / …) against a subject,
+;; citing the authority's OWN program + primary publication. etzhayyim NEVER posts its own
+;; designation and NEVER asserts a subject is a criminal / guilty / a terrorist — those are
+;; UNREPRESENTABLE. kosatsu records "asserter A listed subject S under program P as-of T",
+;; a mirror of a public official act, never a verdict of our own.
+;;
+;; THE DISTINCTIVE OBJECT vs the sibling accountability actors is the COMPETING-CLAIM graph:
+;; the SAME subject under DIFFERENT asserters coexists as PARALLEL datoms; the graph never
+;; collapses them to one boolean "is X sanctioned". A computed DIVERGENCE view surfaces exactly
+;; where jurisdictions DISAGREE (some list, some delist, some never listed) — i.e. it makes the
+;; "犯罪は政治的立ち位置で変わる" reality a first-class, neutral, computed FACT. Crime/sanction
+;; is asserter-relative by construction.
+;;
+;; Siblings (no overlap): danjo (state-corpus discrepancy), keizu (gov power-relations weave),
+;; tsumugi (power-entity 縁 / influence), tadori (authorized on-chain tracing), tasuke (cybercrime
+;; victim support), kanae (fiscal render). kosatsu is the WHO-DESIGNATED-WHOM-AND-WHO-DISAGREES board.
+;;
+;; STRUCTURAL INVARIANTS live in THREE homes each (this schema :db/allowed/enum vectors +
+;; lexicon :const/:enum + Python ValueError). The closed-vocab vectors below are the single
+;; source the structural-invariant test parses. Touch one home, touch all three.
+
+{:ontology/id        "com.etzhayyim.kosatsu.crime-sanctions"
+ :ontology/version   1
+ :ontology/title     "高札 (kosatsu) — crime/sanctions competing-claim board"
+ :ontology/adr       "2606072000"
+
+ ;; ── closed structural vocab (the invariants, as data) ───────────────────────
+ ;; G1 — an authority is a PUBLIC body that posts designations. :etzhayyim / :self / :our
+ ;;      ABSENT — etzhayyim never authors a designation (mirror-not-adjudicator).
+ :ontology/authority-kinds   [:state-treasury :state-foreign-ministry :financial-regulator
+                              :law-enforcement :supranational :international-body]
+ ;; G3 — a designation describes the TYPE OF MEASURE an authority took. These are the
+ ;;      authority's INSTRUMENTS, never a moral label. :criminal / :guilty / :terrorist /
+ ;;      :evil / :enemy ABSENT — a verdict is unrepresentable (danjo G4).
+ :ontology/measure-kinds     [:asset-freeze :financial-sanction :transaction-ban
+                              :travel-restriction :export-control :sectoral-restriction
+                              :list-inclusion :arrest-warrant :wanted-notice]
+ ;; G4 — a designation is an append-only EVENT with a status. :listed (currently on the
+ ;;      asserter's list, as-of) / :delisted (a LATER removal event, never an overwrite).
+ ;;      :guilty / :convicted / :permanent / :final ABSENT (非終末論; no final state).
+ :ontology/designation-status [:listed :delisted]
+ ;; G5 — a subject is whatever a PUBLIC authority itself named in a public designation.
+ ;;      A :designated-person enters the graph ONLY as the subject of a public official act,
+ ;;      carrying only the authority-published identifier (no private-life PII; G6/G9).
+ :ontology/subject-kinds     [:designated-entity :designated-org :designated-person
+                              :designated-vessel :designated-aircraft :designated-wallet
+                              :designated-domain]
+ ;; computed DIVERGENCE classes (the political-stance signal — the whole point of kosatsu).
+ :ontology/divergence-classes [:unanimous :contested :single-asserter]
+ ;; G10 — every datom declares its sourcing honesty.
+ :ontology/sourcing-grades   [:representative :authoritative]
+ ;; G8 — at R0 a social post is dry-run ONLY. :published ABSENT (outward-gated).
+ :ontology/post-statuses     [:dry-run]
+
+ :schema
+ [;; ── :authority/* — a PUBLIC asserting body (G1: never etzhayyim) ─────────────
+  {:db/ident :authority/id      :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/unique :db.unique/identity}
+  {:db/ident :authority/kind    :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:state-treasury :state-foreign-ministry :financial-regulator
+                :law-enforcement :supranational :international-body]
+   :db/doc "G1 — :etzhayyim / :self / :our are UNREPRESENTABLE. kosatsu mirrors public authorities; it never authors a designation."}
+  {:db/ident :authority/label   :db/valueType :db.type/string  :db/cardinality :db.cardinality/one}
+  {:db/ident :authority/jurisdiction :db/valueType :db.type/string :db/cardinality :db.cardinality/one
+   :db/doc "ISO-3166 / supranational code (us / eu / un / gb / jp / au / ca / ru / cn / …). The asserter's OWN jurisdiction — the seat of its political stance."}
+  {:db/ident :authority/stance  :db/valueType :db.type/string  :db/cardinality :db.cardinality/one
+   :db/doc "the asserter's OWN stated legal rationale/regime as the asserter framed it (mirror/quote, attributed). NEVER etzhayyim's view (G6 stance-explicit)."}
+  {:db/ident :authority/sourcing :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:representative :authoritative]}
+  {:db/ident :authority/sources :db/valueType :db.type/string  :db/cardinality :db.cardinality/many
+   :db/doc "G3 — ≥1 primary-publication URL/CID for the authority (its official sanctions/list home)."}
+
+  ;; ── :subject/* — whoever a PUBLIC authority NAMED in a designation (G5) ───────
+  {:db/ident :subject/id        :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/unique :db.unique/identity}
+  {:db/ident :subject/kind      :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:designated-entity :designated-org :designated-person :designated-vessel
+                :designated-aircraft :designated-wallet :designated-domain]
+   :db/doc "G5 — a subject exists ONLY as the named target of a public authority's designation; a :designated-person carries only the authority-published identifier."}
+  {:db/ident :subject/label     :db/valueType :db.type/string  :db/cardinality :db.cardinality/one
+   :db/doc "the name AS PUBLISHED by the designating authority (the public-record string), never a privately-gathered identity."}
+  {:db/ident :subject/jurisdiction :db/valueType :db.type/string :db/cardinality :db.cardinality/one
+   :db/doc "the subject's stated nationality/flag/registration AS PUBLISHED by an authority (optional)."}
+  {:db/ident :subject/sourcing  :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:representative :authoritative]}
+  ;; NOTE: there is deliberately NO :subject/risk-score / :subject/guilt / :subject/threat-level.
+  ;; G2/G7 — kosatsu records WHO designated the subject (edges), never a per-subject score-of-soul
+  ;; or our own risk rating. Divergence/agreement is computed ON READ from the designation edges.
+
+  ;; ── :designation/* — an append-only EVENT: asserter → subject (the core edge) ──
+  {:db/ident :designation/id    :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/unique :db.unique/identity}
+  {:db/ident :designation/asserter :db/valueType :db.type/ref  :db/cardinality :db.cardinality/one
+   :db/doc "G2 — → :authority/id. MANDATORY. There is NO asserter-less designation; a 'global truth' that X is sanctioned is unrepresentable. Every designation is attributed."}
+  {:db/ident :designation/subject :db/valueType :db.type/ref   :db/cardinality :db.cardinality/one :db/doc "→ :subject/id"}
+  {:db/ident :designation/measure :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:asset-freeze :financial-sanction :transaction-ban :travel-restriction
+                :export-control :sectoral-restriction :list-inclusion :arrest-warrant :wanted-notice]
+   :db/doc "G3 — :criminal / :guilty / :terrorist / :enemy are UNREPRESENTABLE. The measure is the authority's INSTRUMENT, never a moral verdict of ours."}
+  {:db/ident :designation/program :db/valueType :db.type/string :db/cardinality :db.cardinality/one
+   :db/doc "the authority's OWN program/legal-basis name AS PUBLISHED (e.g. 'EO 14024', 'UN 1267', 'EU 833/2014', 'Interpol Red Notice'). The asserter's framing, kept as data, never adopted as ours."}
+  {:db/ident :designation/status :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:listed :delisted]
+   :db/doc "G4 — :listed | :delisted only. :guilty / :convicted / :permanent / :final are UNREPRESENTABLE (非終末論)."}
+  {:db/ident :designation/posted-at :db/valueType :db.type/long :db/cardinality :db.cardinality/one
+   :db/doc "G4 — the as-of date the authority posted the designation; the event is append-only history."}
+  {:db/ident :designation/lifted-at :db/valueType :db.type/long :db/cardinality :db.cardinality/one
+   :db/doc "G4 — OPTIONAL: a delisting is a NEW datom (status :delisted) carrying this date; the original :listed datom is NEVER overwritten or deleted."}
+  {:db/ident :designation/asserted-notice :db/valueType :db.type/boolean :db/cardinality :db.cardinality/one
+   :db/allowed [true] :db/doc "G1/G2 — only true is valid: this record is an ATTRIBUTED mirror of an authority's act, not etzhayyim's claim."}
+  {:db/ident :designation/sources :db/valueType :db.type/string :db/cardinality :db.cardinality/many
+   :db/doc "G3 — ≥2 PRIMARY-publication URLs/CIDs from the designating authority itself; a commercial screening terminal is a prohibited citation."}
+  {:db/ident :designation/sourcing :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:representative :authoritative]}
+
+  ;; ── :post/* — a DRY-RUN social post projection (member-signed, never server) ──
+  {:db/ident :post/id           :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/unique :db.unique/identity}
+  {:db/ident :post/subject      :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/doc "the aggregate finding the post narrates (a divergence/agreement summary)."}
+  {:db/ident :post/body         :db/valueType :db.type/string  :db/cardinality :db.cardinality/one}
+  {:db/ident :post/status       :db/valueType :db.type/keyword :db/cardinality :db.cardinality/one
+   :db/allowed [:dry-run] :db/doc "G8 — :published is UNREPRESENTABLE at R0 (outward-gated; live posting = Council Lv6+ + operator + member sig)."}
+  {:db/ident :post/is-mirror    :db/valueType :db.type/boolean :db/cardinality :db.cardinality/one
+   :db/allowed [true] :db/doc "G9 — every post opens with the mirror/competing-claim disclaimer; never speaks AS an authority (ADR-2606042330)."}
+  {:db/ident :post/non-adjudicating-notice :db/valueType :db.type/boolean :db/cardinality :db.cardinality/one
+   :db/allowed [true] :db/doc "G2 — only true is valid; the post reports who-designated-whom + disagreement, never a verdict."}
+  {:db/ident :post/server-held-key :db/valueType :db.type/boolean :db/cardinality :db.cardinality/one
+   :db/allowed [false] :db/doc "G7/no-server-key — only false; the member signs, the server never does (ADR-2605231525)."}
+  {:db/ident :post/author       :db/valueType :db.type/string  :db/cardinality :db.cardinality/one :db/doc "SBT-bound member DID; required for any (gated) live post."}
+  {:db/ident :post/sources      :db/valueType :db.type/string  :db/cardinality :db.cardinality/many :db/doc "G3 — the post carries the same primary-source citations as the finding."}
+  {:db/ident :post/as-of        :db/valueType :db.type/long    :db/cardinality :db.cardinality/one}]}

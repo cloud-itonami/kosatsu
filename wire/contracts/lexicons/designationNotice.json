@@ -1,0 +1,1 @@
+{"lexicon":1,"id":"com.etzhayyim.kosatsu.designationNotice","description":"R0 placeholder lexicon for attributed sanctions/crime designation notices; kosatsu mirrors claims and never adjudicates them.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
