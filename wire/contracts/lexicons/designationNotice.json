@@ -1,1 +1,69 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.designationNotice","description":"R0 placeholder lexicon for attributed sanctions/crime designation notices; kosatsu mirrors claims and never adjudicates them.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.designationNotice",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "An append-only EVENT: a named asserter posted a designation against a subject, citing the authority's OWN program + primary publication. THE CORE EDGE. G2 INVARIANT: :asserter is MANDATORY — an asserter-less 'global truth' designation is unrepresentable; every designation is attributed (:assertedNotice const true). G3 INVARIANT: the MEASURE is the authority's INSTRUMENT (asset-freeze/export-control/…), NEVER a moral label — criminal/guilty/terrorist/enemy are NOT enum members. G4 INVARIANT: status is :listed | :delisted only (no permanent/final/convicted; 非終末論); a delisting is a NEW datom carrying :liftedAt, the original :listed event is never overwritten.",
+      "record" : {
+        "type" : "object",
+        "required" : [ "designationId", "asserter", "subject", "measure", "status", "postedAt", "assertedNotice", "sources", "sourcing" ],
+        "properties" : {
+          "assertedNotice" : {
+            "type" : "boolean",
+            "const" : true,
+            "description" : "G1/G2 INVARIANT — only true: this is an ATTRIBUTED mirror of an authority's act, not etzhayyim's claim."
+          },
+          "postedAt" : {
+            "type" : "integer",
+            "description" : "G4 — the as-of date the authority posted the designation."
+          },
+          "sources" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 2,
+            "description" : "G3 INVARIANT — ≥2 PRIMARY-publication URLs/CIDs from the designating authority itself; a commercial screening terminal is a prohibited citation."
+          },
+          "liftedAt" : {
+            "type" : "integer",
+            "description" : "G4 — required when status=delisted; the removal-event date. The original :listed datom is retained."
+          },
+          "asserter" : {
+            "type" : "string",
+            "minLength" : 1,
+            "description" : "G2 INVARIANT — → :authority/id. MANDATORY; there is no asserter-less designation."
+          },
+          "measure" : {
+            "type" : "string",
+            "enum" : [ "asset-freeze", "financial-sanction", "transaction-ban", "travel-restriction", "export-control", "sectoral-restriction", "list-inclusion", "arrest-warrant", "wanted-notice" ],
+            "description" : "G3 INVARIANT — authority-instrument kinds only. criminal / guilty / terrorist / enemy / crime are NOT enum members; a verdict is unrepresentable (danjo G4)."
+          },
+          "status" : {
+            "type" : "string",
+            "enum" : [ "listed", "delisted" ],
+            "description" : "G4 INVARIANT — :listed | :delisted only; convicted/permanent/final are NOT enum members (非終末論)."
+          },
+          "sourcing" : {
+            "type" : "string",
+            "enum" : [ "representative", "authoritative" ]
+          },
+          "designationId" : {
+            "type" : "string",
+            "description" : "→ :designation/id"
+          },
+          "program" : {
+            "type" : "string",
+            "description" : "the authority's OWN program/legal-basis name AS PUBLISHED (EO 14024 / UN 1267 / EU 833/2014 / Interpol Red Notice). Kept as data, never adopted as ours."
+          },
+          "subject" : {
+            "type" : "string",
+            "description" : "→ :subject/id"
+          }
+        }
+      }
+    }
+  }
+}

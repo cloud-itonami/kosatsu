@@ -1,1 +1,47 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.delistingEvent","description":"R0 placeholder lexicon for append-only delisting events; delisting never overwrites the original notice.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.delistingEvent",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "An as-of removal record: an authority that previously listed a subject has DELISTED it. G4 INVARIANT (非終末論): a delisting is a NEW append-only datom — the original designationNotice (:listed) is NEVER overwritten or deleted, so the full history (listed → delisted, with both dates) is always reconstructable. Mirrors an authority's own delisting action; carries no judgement about why.",
+      "record" : {
+        "type" : "object",
+        "required" : [ "designationId", "asserter", "subject", "postedAt", "liftedAt", "assertedNotice" ],
+        "properties" : {
+          "designationId" : {
+            "type" : "string",
+            "description" : "→ :designation/id of the delisting event"
+          },
+          "asserter" : {
+            "type" : "string",
+            "minLength" : 1,
+            "description" : "→ :authority/id (the SAME authority that originally listed)"
+          },
+          "subject" : {
+            "type" : "string",
+            "description" : "→ :subject/id"
+          },
+          "program" : {
+            "type" : "string",
+            "description" : "the authority's program under which the subject was listed."
+          },
+          "postedAt" : {
+            "type" : "integer",
+            "description" : "the original listing date (retained)."
+          },
+          "liftedAt" : {
+            "type" : "integer",
+            "description" : "G4 — the delisting-event date."
+          },
+          "assertedNotice" : {
+            "type" : "boolean",
+            "const" : true,
+            "description" : "G1/G2 INVARIANT — only true: an attributed mirror of the authority's delisting, not our claim."
+          }
+        }
+      }
+    }
+  }
+}

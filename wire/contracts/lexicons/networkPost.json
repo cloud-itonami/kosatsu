@@ -1,1 +1,59 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.networkPost","description":"R0 placeholder lexicon for aggregate-first kosatsu network posts; outward publication remains gated.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.networkPost",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "A DRY-RUN social post projecting an aggregate kosatsu finding (a divergence/agreement summary). G8 INVARIANT: status is :dry-run only (:published unrepresentable; live posting = Council Lv6+ + operator + member signature). G9: every post opens with the mirror/competing-claim disclaimer and never speaks AS an authority. G2: non-adjudicating — reports who-designated-whom + disagreement, never a verdict. G7: member-signed, server never signs (:serverHeldKey const false).",
+      "record" : {
+        "type" : "object",
+        "required" : [ "postId", "subject", "body", "status", "isMirror", "nonAdjudicatingNotice", "serverHeldKey", "sources" ],
+        "properties" : {
+          "serverHeldKey" : {
+            "type" : "boolean",
+            "const" : false,
+            "description" : "G7 INVARIANT — only false; the member signs, the server never does (ADR-2605231525)."
+          },
+          "nonAdjudicatingNotice" : {
+            "type" : "boolean",
+            "const" : true,
+            "description" : "G2 INVARIANT — only true."
+          },
+          "postId" : {
+            "type" : "string"
+          },
+          "sources" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 2,
+            "description" : "G3 — the post carries the same ≥2 primary-source citations as the finding."
+          },
+          "isMirror" : {
+            "type" : "boolean",
+            "const" : true,
+            "description" : "G9 INVARIANT — only true; opens with the mirror/competing-claim disclaimer, never speaks AS an authority."
+          },
+          "author" : {
+            "type" : "string",
+            "description" : "SBT-bound member DID; required for any (gated) live post."
+          },
+          "status" : {
+            "type" : "string",
+            "const" : "dry-run",
+            "description" : "G8 INVARIANT — dry-run only; published is unrepresentable at R0 (outward-gated)."
+          },
+          "body" : {
+            "type" : "string"
+          },
+          "subject" : {
+            "type" : "string",
+            "description" : "the aggregate finding narrated (a divergence/agreement summary)."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,50 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.assertingAuthority","description":"R0 placeholder lexicon for kosatsu asserting authorities; every designation remains attributed to a named authority.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.assertingAuthority",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "A PUBLIC asserting body that posts designations (OFAC / EU Council / UN SC / UK OFSI / JP-MOF / Interpol / …). G1 INVARIANT: etzhayyim is NEVER an authority — kosatsu mirrors public authorities and authors no designation of its own. Each authority declares its OWN stance (its legal regime/jurisdiction), kept as attributed data, never adopted as ours (G6).",
+      "record" : {
+        "type" : "object",
+        "required" : [ "authorityId", "kind", "jurisdiction", "stance", "sourcing", "sources" ],
+        "properties" : {
+          "authorityId" : {
+            "type" : "string",
+            "description" : "→ :authority/id"
+          },
+          "kind" : {
+            "type" : "string",
+            "enum" : [ "state-treasury", "state-foreign-ministry", "financial-regulator", "law-enforcement", "supranational", "international-body" ],
+            "description" : "G1 INVARIANT — etzhayyim / self / our are NOT enum members."
+          },
+          "label" : {
+            "type" : "string"
+          },
+          "jurisdiction" : {
+            "type" : "string",
+            "description" : "the asserter's OWN jurisdiction (us / eu / un / gb / jp / au / ca / ru / cn / …) — the seat of its political stance."
+          },
+          "stance" : {
+            "type" : "string",
+            "minLength" : 1,
+            "description" : "G6 stance-explicit — the asserter's OWN stated legal rationale/regime (mirror/quote, attributed). Never etzhayyim's view."
+          },
+          "sourcing" : {
+            "type" : "string",
+            "enum" : [ "representative", "authoritative" ]
+          },
+          "sources" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "minLength" : 1,
+            "description" : "G3 — ≥1 primary-publication URL/CID (the authority's official list home)."
+          }
+        }
+      }
+    }
+  }
+}

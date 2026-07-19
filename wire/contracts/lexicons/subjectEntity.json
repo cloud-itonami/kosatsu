@@ -1,1 +1,38 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.subjectEntity","description":"R0 placeholder lexicon for kosatsu subject entities; no guilt/verdict field is represented.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.subjectEntity",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "Whoever a PUBLIC authority NAMED in a designation. G5 INVARIANT: a subject exists ONLY as the named target of a public official act and carries ONLY the authority-published identifier — a private-life PII field (dob/face/address/health/family/…) is NOT representable (no-doxxing; any such datum lives encrypted off-graph, ADR-2605181100). G2/G7: there is NO :riskScore / :guilt / :threatLevel — kosatsu never rates a subject; divergence is computed on read from the designation edges.",
+      "record" : {
+        "type" : "object",
+        "required" : [ "subjectId", "kind", "label", "sourcing" ],
+        "properties" : {
+          "subjectId" : {
+            "type" : "string",
+            "description" : "→ :subject/id"
+          },
+          "kind" : {
+            "type" : "string",
+            "enum" : [ "designated-entity", "designated-org", "designated-person", "designated-vessel", "designated-aircraft", "designated-wallet", "designated-domain" ],
+            "description" : "G5 — a subject is a designation TARGET; a designated-person carries only the authority-published identifier."
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "the name AS PUBLISHED by the designating authority (public-record string), never privately gathered."
+          },
+          "jurisdiction" : {
+            "type" : "string",
+            "description" : "nationality/flag/registration AS PUBLISHED by an authority (optional)."
+          },
+          "sourcing" : {
+            "type" : "string",
+            "enum" : [ "representative", "authoritative" ]
+          }
+        }
+      }
+    }
+  }
+}
