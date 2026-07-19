@@ -1,1 +1,56 @@
-{"lexicon":1,"id":"com.etzhayyim.kosatsu.competingClaimView","description":"R0 placeholder lexicon for kosatsu competing-claim views over attributed designation events.","defs":{"main":{"type":"record","key":"tid","record":{"type":"object","required":["createdAt"],"properties":{"createdAt":{"type":"string","format":"datetime"}}}}}}
+{
+  "lexicon" : 1,
+  "id" : "com.etzhayyim.kosatsu.competingClaimView",
+  "defs" : {
+    "main" : {
+      "type" : "record",
+      "key" : "tid",
+      "description" : "A COMPUTED, read-only divergence view for one subject: which tracked authorities currently list it, which delisted it, and which are silent — classified :unanimous | :contested | :single-asserter. This is the politically-neutral FACT that 'what counts as a sanctionable act varies by political position'. G2 INVARIANT: the view reports who-designated-whom + disagreement; it carries NO verdict, NO recommendation, and NO etzhayyim opinion (:nonAdjudicatingNotice const true). Derived on read from designationNotice edges — never a stored per-subject score.",
+      "record" : {
+        "type" : "object",
+        "required" : [ "subject", "class", "listing", "delisted", "silent", "nonAdjudicatingNotice" ],
+        "properties" : {
+          "subject" : {
+            "type" : "string",
+            "description" : "→ :subject/id"
+          },
+          "class" : {
+            "type" : "string",
+            "enum" : [ "unanimous", "contested", "single-asserter" ],
+            "description" : "the divergence classification computed across tracked authorities."
+          },
+          "listing" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "authority ids currently listing the subject (as-of)."
+          },
+          "delisted" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "authority ids that listed then DELISTED the subject (as-of event history)."
+          },
+          "silent" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "tracked authority ids that never designated the subject — itself a stance."
+          },
+          "asOf" : {
+            "type" : "integer",
+            "description" : "the as-of timestamp the view was computed for (omit = latest)."
+          },
+          "nonAdjudicatingNotice" : {
+            "type" : "boolean",
+            "const" : true,
+            "description" : "G2 INVARIANT — only true; a divergence view is a neutral fact, never a verdict or recommendation."
+          }
+        }
+      }
+    }
+  }
+}
