@@ -1,13 +1,13 @@
 {:paths ["src" "test"]
  :tasks {test {:requires ([clojure.test] [kosatsu.cells.social-post.test-state-machine]
-                          [kosatsu.methods.test-analyze] [kosatsu.methods.test-autorun]
+                          [kosatsu.methods.test-analyze] [kosatsu.methods.test-anchor] [kosatsu.methods.test-autorun]
                           [kosatsu.methods.test-bridge] [kosatsu.methods.test-charter-invariants]
                           [kosatsu.methods.test-consistency] [kosatsu.methods.test-ingest]
                           [kosatsu.methods.test-integrity] [kosatsu.methods.test-kotoba]
                           [kosatsu.methods.test-lexicons] [kosatsu.methods.test-social]
                           [kosatsu.methods.test-weave] [kosatsu.murakumo-test])
                :task (let [r (clojure.test/run-tests 'kosatsu.cells.social-post.test-state-machine
-                              'kosatsu.methods.test-analyze 'kosatsu.methods.test-autorun
+                              'kosatsu.methods.test-analyze 'kosatsu.methods.test-anchor 'kosatsu.methods.test-autorun
                               'kosatsu.methods.test-bridge 'kosatsu.methods.test-charter-invariants
                               'kosatsu.methods.test-consistency 'kosatsu.methods.test-ingest
                               'kosatsu.methods.test-integrity 'kosatsu.methods.test-kotoba

@@ -10,4 +10,27 @@
  :actor/non-goals {"N1" "NOT a sanctions-screening / compliance product (no pass/fail verdict on a subject; danjo/chigiri boundary)", "N2" "NOT a watchlist or a target-list (a competing-claim mirror by construction)", "N3" "NOT a per-subject risk / guilt / threat score (edge-primary; we never rate a subject)", "N4" "NOT an enforcement / asset-freeze / interdiction instrument (observation only; G9)", "N5" "NOT a doxxing vector — a subject carries only the authority-published identifier (G5)", "N6" "NOT an adopter of any one jurisdiction's stance — every designation stays attributed to its asserter (G1/G6)", "N7" "NOT a Kotoba/Datomic/SQL store (kotoba Datom log only; supersedes the legacy RisingWave sanctions/intel apps)", "N8" "NOT a commercial intelligence terminal (primary public record only; Rider §2(e))"}
  :actor/lexicons ["com.etzhayyim.kosatsu.assertingAuthority" "com.etzhayyim.kosatsu.subjectEntity" "com.etzhayyim.kosatsu.designationNotice" "com.etzhayyim.kosatsu.competingClaimView" "com.etzhayyim.kosatsu.delistingEvent" "com.etzhayyim.kosatsu.networkPost"]
  :actor/status :r0-design-only
+
+ ;; The durability plane (kosatsu.methods.anchor, 2026-08-22). Delegates to
+ ;; kotoba-lang/kotobase-anchor-fevm; this repo grows no second anchor format.
+ ;; It produces PLANS only -- G8 still governs whether an adapter may run.
+ :actor/anchor
+ {:anchor/owner "kotoba-lang/kotobase-anchor-fevm"
+  :anchor/providers {:transparency "chainless signed append-only log; no chain, gas or RPC"
+                     :evm "public-chain notarisation; opt-in and irreversible"}
+  :anchor/payload "{database-id, epoch, logical-checkpoint-root} -- the root is an opaque CID"
+  :anchor/discloses "nothing: no subject label, authority id or datom crosses the boundary (G5)"
+  :anchor/makes-falsifiable "G4 -- if the record moves under a previously anchored head, the commitment no longer opens"
+  :anchor/refusals
+  [{:gate "G10-anchor"
+    :rule "an :evm plan is refused unless the log is wholly :authoritative -- a public-chain artefact is permanent and cannot say 'this was synthetic'"}
+   {:gate "anchor-provider"
+    :rule "provider is required with no default; a defaulted destination is a destination nobody chose"}
+   {:gate "anchor-evidence-floor"
+    :rule "an empty log is {:ok? false :checked 0 :reason :empty-log}; checked-zero never reads as verified-intact"}
+   {:gate "anchor-unverified"
+    :rule "checkpoint throws on an unverified chain rather than returning nil"}]
+  :anchor/database-id "kosatsu/<representative|authoritative|mixed|unsourced> -- the sourcing mode (G10) is INSIDE the commitment"
+  :anchor/deployed? false}
+
  :actor/id "kosatsu"}

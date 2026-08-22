@@ -170,7 +170,7 @@
   (is (thrown-with-msg?
        clojure.lang.ExceptionInfo
        #"G3: a post needs ≥2 primary-source citations"
-       (social/post "x" "sub" "body" ["https://ofac.treasury.gov/"]))
+       (#'social/post "x" "sub" "body" ["https://ofac.treasury.gov/"]))
       "G3: a post with <2 sources must raise"))
 
 (deftest g3-raise-zero-sources
@@ -178,12 +178,12 @@
   (is (thrown-with-msg?
        clojure.lang.ExceptionInfo
        #"G3: a post needs ≥2 primary-source citations"
-       (social/post "x" "sub" "body" []))
+       (#'social/post "x" "sub" "body" []))
       "G3: a post with 0 sources must raise"))
 
 (deftest g3-ok-exactly-2-sources
   ;; _post with exactly 2 sources must succeed.
-  (is (map? (social/post "x" "sub" "body"
+  (is (map? (#'social/post "x" "sub" "body"
                           ["https://ofac.treasury.gov/" "https://www.sanctionsmap.eu/"]))
       "G3: a post with exactly 2 sources must succeed"))
 
