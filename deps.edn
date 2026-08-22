@@ -1,8 +1,32 @@
 {:paths ["src"]
+
+ ;; The anchor plane. kotoba-lang/kotobase-anchor-fevm already owns chain-neutral
+ ;; checkpoint receipts and its default provider needs no chain, no gas and no
+ ;; RPC; kosatsu.methods.anchor delegates to it rather than growing a second
+ ;; anchor format. Workspace-internal deps are :local/root relative and the
+ ;; version authority is the west pin (manifest/layers.edn reference-rules).
+ :deps {io.github.kotoba-lang/kotobase-anchor-fevm
+        {:local/root "../../kotoba-lang/kotobase-anchor-fevm"}}
+
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
-                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
-         :main-opts ["-m" "cognitect.test-runner"]}
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}
+                      ;; test-only. `kosatsu.methods.ingest` ships a self-contained
+                      ;; JSON reader on purpose; cheshire is here as the INDEPENDENT
+                      ;; writer its fixtures are generated with, so the reader is
+                      ;; checked against someone else's JSON rather than against
+                      ;; itself. babashka bundles cheshire, which is why `bb test`
+                      ;; never needed this and why the gap stayed invisible while
+                      ;; `clojure -M:test` was running 1 namespace of 13.
+                      cheshire/cheshire {:mvn/version "5.13.0"}}
+         ;; -r ".*" because 12 of this repo's 13 test namespaces are named
+         ;; `kosatsu.methods.test-*`, and the runner's DEFAULT pattern is
+         ;; #".*-test$". Without this the suite ran `kosatsu.murakumo-test`
+         ;; alone -- 9 tests out of 13 namespaces -- and reported "0 failures".
+         ;; Measured 2026-08-22. A green covering 1/13 of the suite is the same
+         ;; defect class the charter gates guard against: a check that did not
+         ;; run returning the value of a check that passed.
+         :main-opts ["-m" "cognitect.test-runner" "-d" "test" "-r" ".*"]}
   :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
          :main-opts    ["-m" "clj-kondo.main" "--lint" "src" "test" "--fail-level" "error"]}}}
