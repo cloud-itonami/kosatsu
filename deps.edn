@@ -5,7 +5,12 @@
  ;; RPC; kosatsu.methods.anchor delegates to it rather than growing a second
  ;; anchor format. Workspace-internal deps are :local/root relative and the
  ;; version authority is the west pin (manifest/layers.edn reference-rules).
- :deps {io.github.kotoba-lang/kotobase-anchor-fevm
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       io.github.kotoba-lang/kotobase-anchor-fevm
         {:local/root "../../kotoba-lang/kotobase-anchor-fevm"}}
 
  :aliases

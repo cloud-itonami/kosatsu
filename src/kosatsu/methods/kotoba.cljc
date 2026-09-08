@@ -28,7 +28,7 @@
   (the real port of _edn.py). The tx CID reproduces Python `'b' + hashlib.sha256(json.dumps(
   {'prev':…,'datoms':…}, ensure_ascii=False, sort_keys=True, separators=(',',':')))` byte-for-byte.
   (The Python `__main__` demo printer is omitted — note it.)"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kosatsu.methods.edn :as edn]))
 
 ;; ── sha-256 host seam ─────────────────────────────────────────────────────────

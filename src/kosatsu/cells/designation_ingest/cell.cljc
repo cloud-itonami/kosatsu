@@ -4,7 +4,7 @@
   designation export into validated :designation/* datoms. .solve() raises at R0 (G8): live ingest
   of a real sanctions list is Council Lv6+ + operator + member-signature gated; offline normalization
   runs via methods/ingest."
-  (:require [clojure.string]))
+  (:require [kotoba.lang.text]))
 
 (defn solve
   [_input-state]

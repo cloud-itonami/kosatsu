@@ -13,7 +13,7 @@
 
   House style: Python ':…' keyword strings stay literal strings; pure fns (render is pure over the
   woven graph); file I/O only at the #?(:clj) edge."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]))
 

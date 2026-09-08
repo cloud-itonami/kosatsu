@@ -10,7 +10,7 @@
     G2 — non-adjudicating (the body reports who-designated-whom + disagreement, never a verdict).
   Self-contained. Conventions: dataclass PostState → a plain map with the SAME string field keys the
   Python `cs.__dict__` round-trips; phase enum value identities stay strings."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def disclaimer "[mirror · competing-claim — non-adjudicating; a designation is asserter-relative]")
 

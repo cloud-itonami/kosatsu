@@ -15,7 +15,7 @@
     G9 gate: note text present on every join key; never an enforcement instruction.
 
   Run as part of the standalone bb test suite."
-  (:require [kosatsu.methods.bridge :as b]
+  (:require [kotoba.lang.text] [kosatsu.methods.bridge :as b]
             [kosatsu.methods.weave :as w]
             [kosatsu.methods.edn :as e]
             [clojure.java.io :as io]
@@ -126,9 +126,9 @@
   ;; Every join key must carry the advisory note (G9 — never an enforcement instruction).
   (let [g  (seed-graph)
         jk (b/join-keys g)]
-    (is (every? #(clojure.string/includes? (get % "note" "") "advisory") jk)
+    (is (every? #(kotoba.lang.text/includes? (get % "note" "") "advisory") jk)
         "Every join key must include 'advisory' in its note")
-    (is (every? #(clojure.string/includes? (get % "note" "") "enforcement") jk)
+    (is (every? #(kotoba.lang.text/includes? (get % "note" "") "enforcement") jk)
         "Every join key note must reference 'enforcement'")))
 
 ;; ── tsumugi-en-edges count ───────────────────────────────────────────────────
@@ -223,14 +223,14 @@
   ;; lstrip(':') must be applied to the measure keyword (e.g. ":asset-freeze" → "asset-freeze")
   (let [g  (seed-graph)
         te (b/tsumugi-en-edges g)]
-    (is (not-any? #(clojure.string/starts-with? (get % "measure" "") ":") te)
+    (is (not-any? #(kotoba.lang.text/starts-with? (get % "measure" "") ":") te)
         "No tsumugi edge measure should start with a colon")))
 
 (deftest join-keys-subject-kind-no-leading-colon
   ;; lstrip(':') must be applied to the subject kind (e.g. ":designated-entity" → "designated-entity")
   (let [g  (seed-graph)
         jk (b/join-keys g)]
-    (is (not-any? #(clojure.string/starts-with? (get % "subject_kind" "") ":") jk)
+    (is (not-any? #(kotoba.lang.text/starts-with? (get % "subject_kind" "") ":") jk)
         "No join key subject_kind should start with a colon")))
 
 (when (= *file* (System/getProperty "babashka.file"))

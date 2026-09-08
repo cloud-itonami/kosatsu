@@ -28,7 +28,7 @@
   authorities dict in INSERTION order then `sort`. So plain insertion-order tracking (array-
   map, which the graph maps already preserve from the EDN reader) suffices — no siphash/
   setobject port is needed. Deterministic."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (declare pr-vec py-round)
 
@@ -78,17 +78,17 @@
         ;; split('/')[-1]
         s (last (str/split s #"/" -1))
         s (or s "")]
-    (str/lower-case s)))
+    (str/lower s)))
 
 (defn source-denied
   "Return the first prohibited commercial screening terminal found in any source, or \"\" if clean."
   [sources]
-  (let [blob (str/lower-case (str/join " " (map str (or sources []))))]
+  (let [blob (str/lower (str/join " " (map str (or sources []))))]
     (or (some (fn [d] (when (str/includes? blob d) d)) source-deny)
         "")))
 
 (defn- s-strip-lower [v]
-  (-> (if (or (nil? v) (false? v)) "" (str v)) str/trim str/lower-case))
+  (-> (if (or (nil? v) (false? v)) "" (str v)) str/trim str/lower))
 
 (defn- truthy-str
   "str(x).strip() truthy check — empty/blank string is falsey."

@@ -2,7 +2,7 @@
   "test_consistency.py — 高札 (kosatsu) seed/ontology consistency + integrity. ADR-2606072000.
   1:1 Clojure port of src/kosatsu/methods/test_consistency.cljc (stdlib harness → clojure.test)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]))

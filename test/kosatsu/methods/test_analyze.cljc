@@ -16,7 +16,7 @@
   (bridge / ingest / social are not part of this analyze-driver port, matching the
   rasen/inochi/kabuto precedent.)"
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.java.io :as io]
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as w]

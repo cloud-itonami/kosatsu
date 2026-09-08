@@ -15,7 +15,7 @@
   House style: Python ':…' keyword strings stay literal strings; pure fns; file I/O only behind
   #?(:clj …). SELF-CONTAINED minimal JSON reader (no cheshire/data.json). (The Python `__main__`
   CLI is preserved behind #?(:clj …) as -main.)"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kosatsu.methods.weave :as weave]))
 
 ;; ── minimal JSON reader (subset; string-keyed maps, Python json.loads shapes) ─

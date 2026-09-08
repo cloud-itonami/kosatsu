@@ -19,7 +19,7 @@
 
   House style: Python ':…' keyword strings stay literal strings; pure fns. (The Python `__main__`
   demo printer is omitted — note it.)"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kosatsu.methods.weave :as weave]))
 
 ;; subject kind → the sibling actor that can further observe it (join target). Person/org subjects
