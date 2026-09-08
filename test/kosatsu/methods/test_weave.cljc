@@ -12,7 +12,7 @@
   test_autorun.py / test_consistency.py / test_lexicons.py / test_charter_invariants.py —
   those exercise analyze / autorun / ingest / social / bridge modules that are not part of
   this weave-core port."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is run-tests]]
             [clojure.java.io :as io]
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as w]))
@@ -46,9 +46,9 @@
   [frag thunk]
   (try (thunk) false
        (catch clojure.lang.ExceptionInfo e
-         (clojure.string/includes? (.getMessage e) frag))
+         (kotoba.lang.text/includes? (.getMessage e) frag))
        (catch Exception e
-         (clojure.string/includes? (str (.getMessage e)) frag))))
+         (kotoba.lang.text/includes? (str (.getMessage e)) frag))))
 
 ;; ── seed weaves clean ─────────────────────────────────────────────────────────
 (deftest test-seed-weaves

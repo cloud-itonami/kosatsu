@@ -3,7 +3,7 @@
   (ADR-2606072000). G8 every cell .solve() raises at R0; the social_post drafting membrane enforces
   G3 (≥2 sources) / G7 (no-server-key) / G8 (dry-run only) / G9 (mirror disclaimer)."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kosatsu.cells.social-post.state-machine :as sp]
             [kosatsu.cells.designation-ingest.cell :as di]
             [kosatsu.cells.competing-claim-weave.cell :as ccw]))

@@ -18,7 +18,7 @@
             [kosatsu.methods.weave :as w]
             [kosatsu.methods.edn :as e]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing run-tests]]))
 
 (defn- actor-root [] (io/file (or (System/getProperty "user.dir") ".")))

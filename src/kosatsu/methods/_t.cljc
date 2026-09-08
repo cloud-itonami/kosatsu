@@ -7,7 +7,7 @@
   harness — `run`/`expect-raises` are kept here only for parity with the Python `_t.run` /
   `_t.expect_raises` API. Pure (the Python sys.exit / traceback printing is host I/O, kept behind
   #?(:clj …); cljs callers get the {:passed :failed} return value)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn run
   "Run a seq of [name fn] cases. A case passes if it returns without throwing; failures are printed

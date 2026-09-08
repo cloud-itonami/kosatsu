@@ -11,7 +11,7 @@
   kosatsu.methods.edn reader convention); we lstrip the leading colon to compare against the bare
   tokens, exactly as the Python `k.lstrip(':')` does."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]))
@@ -133,7 +133,7 @@
 (deftest test-seed-authorities-not-self
   (let [seed (edn/load-edn seed-path)]
     (doseq [a (get seed ":authorities")]
-      (let [aid (str/lower-case (get a ":authority/id"))]
+      (let [aid (str/lower (get a ":authority/id"))]
         (doseq [tok weave/self-tokens]
           (is (not (str/includes? aid tok)) (str "G1: authority " aid " resolves to self")))
         (is (not (str/blank? (str/trim (get a ":authority/stance"))))
@@ -146,7 +146,7 @@
       (is (and (not (contains? s ":subject/risk-score")) (not (contains? s ":subject/guilt"))))
       (doseq [key (keys s)]
         (is (not (contains? weave/pii-forbidden-subject-attrs
-                            (str/lower-case (last (str/split (lstrip-colon key) #"/" -1)))))
+                            (str/lower (last (str/split (lstrip-colon key) #"/" -1)))))
             (str key))))))
 
 (deftest test-seed-designations-attributed-factual-sourced

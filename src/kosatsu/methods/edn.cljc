@@ -11,7 +11,7 @@
 
   kosatsu's `_edn.py` is byte-identical to keizu's / ake's (same family; only the
   docstring differs). Stdlib only (regex tokenizer); file I/O at the #?(:clj) edge."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── tokenizer (mirror of the Python _TOK regex) ───────────────────────────
 ;; Matches: whitespace/commas | ; comment | one of [ ] { } | "string" | bare atom.

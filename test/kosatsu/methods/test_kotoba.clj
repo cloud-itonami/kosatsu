@@ -7,7 +7,7 @@
 (ns kosatsu.methods.test-kotoba
   (:require [clojure.test :refer [deftest is testing run-tests]]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kosatsu.methods.edn :as e]
             [kosatsu.methods.weave :as w]
             [kosatsu.methods.kotoba :as kotoba]))

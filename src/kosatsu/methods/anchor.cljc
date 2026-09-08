@@ -34,7 +34,7 @@
   no datom crosses it. This is not incidental: G5 (subject-dignity / no-doxxing)
   would be violated by an anchor that leaked who is designated, and an anchor is
   the one artefact here designed to be permanent and public."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kosatsu.methods.kotoba :as k]
             [kotobase.anchor.checkpoint :as cp]))
 

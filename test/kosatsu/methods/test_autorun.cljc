@@ -13,7 +13,7 @@
       {contested | unanimous | single-asserter};
     - it does NO external I/O (offline seed, local persist — G7/G8 stay gated)."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.set :as set]
             #?(:clj [clojure.java.io :as io])
             [kosatsu.methods.autorun :as autorun]
@@ -107,7 +107,7 @@
                                           (nth d 3)))
                                 datoms)]
             (is (= 1 (count asserters)) (str "designation " e " carries exactly one :asserter"))
-            (is (and (seq asserters) (not (str/includes? (str/lower-case (str (first asserters))) "etzhayyim")))
+            (is (and (seq asserters) (not (str/includes? (str/lower (str (first asserters))) "etzhayyim")))
                 (str "designation " e " asserter is NOT etzhayyim (etzhayyim authors no designation)")))))
       (finally (.delete log)))))
 
@@ -116,7 +116,7 @@
     (try
       (autorun/run-cycle 1 autorun/seed-default log)
       (let [datoms (get (first (kotoba/read-log log)) ":tx/datoms")
-            attrs (set (map #(str/lower-case (str (nth % 2))) datoms))]
+            attrs (set (map #(str/lower (str (nth % 2))) datoms))]
         (doseq [tok ["score" "rank" "verdict" "guilt" "legitimacy" "true-crime" "trustworthiness"]]
           (is (not (some #(str/includes? % tok) attrs))
               (str "no `" tok "` attr in the log (no verdict / no score)")))

@@ -15,7 +15,7 @@
     ingest-file           — temp JSON fixture; counts + specific normalized record.
 
   Run as part of the standalone bb test suite."
-  (:require [kosatsu.methods.ingest :as ingest]
+  (:require [kotoba.lang.text] [kosatsu.methods.ingest :as ingest]
             [clojure.test :refer [deftest is testing run-tests]]
             [clojure.java.io :as io]
             [cheshire.core :as json]))
@@ -30,9 +30,9 @@
 (defn- raises-containing? [frag thunk]
   (try (thunk) false
        (catch clojure.lang.ExceptionInfo e
-         (clojure.string/includes? (.getMessage e) frag))
+         (kotoba.lang.text/includes? (.getMessage e) frag))
        (catch Exception e
-         (clojure.string/includes? (str (.getMessage e)) frag))))
+         (kotoba.lang.text/includes? (str (.getMessage e)) frag))))
 
 ;; ── fixtures ──────────────────────────────────────────────────────────────────
 

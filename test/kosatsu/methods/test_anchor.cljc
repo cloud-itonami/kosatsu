@@ -2,7 +2,7 @@
   "Every refusal in kosatsu.methods.anchor is exercised in BOTH directions: a
   case that passes it, and one thing broken so that the NAMED refusal fires.
   A guard that has only been seen to allow is not evidence that it guards."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kosatsu.methods.anchor :as anchor]
             [kosatsu.methods.edn :as edn]
