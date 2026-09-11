@@ -1,6 +1,6 @@
 (ns kosatsu.methods.kotoba
   "kotoba.py — kosatsu (高札) kotoba Datom-log writer (local, content-addressed).
-  ADR-2606072000 + ADR-2605262130 + ADR-2605312345. 1:1 Clojure port of `src/kosatsu/methods/kotoba.cljc`.
+  ADR-2606072000 + ADR-2605262130 + ADR-2605312345. 1:1 Clojure port of `src/kosatsu/methods/kotoba.cljk`.
 
   The substrate boundary (root CLAUDE.md): canonical state is the kotoba Datom log —
   content-addressed EAVT assertions, append-only (非終末論; every designation is an append-only

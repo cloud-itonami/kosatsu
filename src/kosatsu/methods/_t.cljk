@@ -1,6 +1,6 @@
 (ns kosatsu.methods._t
   "_t.py — tiny standalone test harness (no pytest needed) — shared by kosatsu test_*.py.
-  1:1 Clojure port of `src/kosatsu/methods/_t.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/_t.cljk`.
 
   NOTE: the .cljc test ports (test_consistency.cljc / test_lexicons.cljc /
   test_charter_invariants.cljc / test_autorun.cljc) use clojure.test directly rather than this

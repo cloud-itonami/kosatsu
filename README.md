@@ -105,6 +105,6 @@ nothing has been anchored.
 
 ### Known pre-existing debt
 
-`clojure -M:lint` reports **13 errors across 8 files** (`src/kosatsu/mesh.clj`,
+`clojure -M:lint` reports **13 errors across 8 files** (`src/kosatsu/mesh.cljk`,
 `ingest.cljc`, `weave.cljc` and five test namespaces). All predate the anchor
 plane; the two new files contribute none. Recorded rather than silently carried.

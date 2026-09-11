@@ -1,6 +1,6 @@
 (ns kosatsu.methods.analyze
   "analyze.cljc — 高札 (kosatsu) end-to-end dry-run → methods/out/intel-report.md. ADR-2606072000.
-  1:1 Clojure port of `src/kosatsu/methods/analyze.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/analyze.cljk`.
 
   Loads the :representative seed, weaves the competing-claim graph, and renders an aggregate-first,
   NON-adjudicating Markdown report whose headline is the DIVERGENCE view: where jurisdictions

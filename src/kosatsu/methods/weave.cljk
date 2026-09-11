@@ -1,6 +1,6 @@
 (ns kosatsu.methods.weave
   "weave.cljc — 高札 (kosatsu) competing-claim build + divergence engine. ADR-2606072000.
-  1:1 Clojure port of `src/kosatsu/methods/weave.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/weave.cljk`.
 
   THE HEART of the actor and the G1..G5 anchor. Given the seed designation graph it:
 

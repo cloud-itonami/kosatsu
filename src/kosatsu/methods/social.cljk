@@ -1,6 +1,6 @@
 (ns kosatsu.methods.social
   "social.py — 高札 (kosatsu) DRY-RUN social posts. ADR-2606072000.
-  1:1 Clojure port of `src/kosatsu/methods/social.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/social.cljk`.
 
   Projects the aggregate divergence/agreement findings into member-signable, NON-adjudicating
   dry-run posts (the `post` fn below builds an app.bsky.feed.post-shaped networkPost record).

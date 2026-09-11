@@ -1,6 +1,6 @@
 (ns kosatsu.cells.social-post.state-machine
   "Phase state machine for the 高札 (kosatsu) social_post cell — the G2/G7/G8/G9 publication membrane.
-  1:1 port of src/kosatsu/cells/social_post/state_machine.cljc (ADR-2606072000).
+  1:1 port of src/kosatsu/cells/social_post/state_machine.cljk (ADR-2606072000).
 
   A divergence finding enters; it is DRAFTED into a dry-run post ONLY if:
     G3 — ≥2 primary-source citations are present;

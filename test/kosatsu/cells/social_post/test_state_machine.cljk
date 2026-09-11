@@ -1,5 +1,5 @@
 (ns kosatsu.cells.social-post.test-state-machine
-  "高札 (kosatsu) cell scaffolds + publication membrane tests. 1:1 port of test/kosatsu/cells/social_post/test_state_machine.cljc
+  "高札 (kosatsu) cell scaffolds + publication membrane tests. 1:1 port of test/kosatsu/cells/social_post/test_state_machine.cljk
   (ADR-2606072000). G8 every cell .solve() raises at R0; the social_post drafting membrane enforces
   G3 (≥2 sources) / G7 (no-server-key) / G8 (dry-run only) / G9 (mirror disclaimer)."
   (:require [clojure.test :refer [deftest is]]

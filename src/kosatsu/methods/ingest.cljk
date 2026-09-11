@@ -1,6 +1,6 @@
 (ns kosatsu.methods.ingest
   "ingest.py — 高札 (kosatsu) offline designation membrane. ADR-2606072000.
-  1:1 Clojure port of `src/kosatsu/methods/ingest.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/ingest.cljk`.
 
   Normalizes an authority's PUBLIC designation export (a list of {asserter, subject, measure,
   program, status, posted_at, sources}) into validated `:designation/*` datoms ready for the kotoba
