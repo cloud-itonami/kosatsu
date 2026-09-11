@@ -1,6 +1,6 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; kosatsu 高札 — validation of the designation referential-integrity check.
-;; Run as part of `bb test`.
+;; Run as part of `kbb -M:test`.
 (ns kosatsu.methods.test-integrity
   "Validation of weave.cljc's referential-integrity check — check-integrity / assert-integrity,
   which guard the kosatsu invariant that every sanctions/crime DESIGNATION's asserter (the

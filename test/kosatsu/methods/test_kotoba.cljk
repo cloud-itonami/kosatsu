@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; test_kotoba.clj — babashka tests for kosatsu.methods.kotoba. ADR-2606072000.
 ;;
 ;; Brand-new test coverage (there is no test_kotoba.py).

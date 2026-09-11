@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; New Clojure test for methods/social.clj (no test_social.py existed — fresh coverage).
 (ns kosatsu.methods.test-social
   "Tests for the 高札 (kosatsu) dry-run social-post projection (methods/social.clj).

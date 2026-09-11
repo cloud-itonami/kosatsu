@@ -11,9 +11,9 @@ and legacy JSON-LD manifests are prohibited.
 ## Running the suite
 
 ```bash
-clojure -M:test     # 173 tests / 729 assertions  (measured 2026-08-22)
-clojure -M:lint
-bb test             # legacy path; the workspace retired bb as a script host
+kbb -M:test     # 173 tests / 729 assertions  (measured 2026-08-22)
+kbb -M:lint
+kbb -M:test             # legacy path; the workspace retired bb as a script host
 ```
 
 > **The `:test` alias was running 1 namespace of 13 until 2026-08-22.** The
@@ -22,9 +22,9 @@ bb test             # legacy path; the workspace retired bb as a script host
 > `kosatsu.murakumo-test` alone — **31 assertions of 729** — and reported
 > "0 failures". The alias now passes `-d test -r ".*"`.
 >
-> Fixing it surfaced two breaks that only `bb test` had been hiding, both
+> Fixing it surfaced two breaks that only `kbb -M:test` had been hiding, both
 > because babashka is more permissive than the JVM: `cheshire` was missing from
-> the test classpath (bb bundles it), and three tests called a `defn-` var
+> the test classpath (kbb -M:bundles it), and three tests called a `defn-` var
 > directly (SCI does not enforce privacy). Both are fixed. **A green that
 > covered 4% of the suite is the same defect the charter gates guard against —
 > a check that did not run returning the value of a check that passed.**
@@ -105,6 +105,6 @@ nothing has been anchored.
 
 ### Known pre-existing debt
 
-`clojure -M:lint` reports **13 errors across 8 files** (`src/kosatsu/mesh.cljk`,
+`kbb -M:lint` reports **13 errors across 8 files** (`src/kosatsu/mesh.cljk`,
 `ingest.cljc`, `weave.cljc` and five test namespaces). All predate the anchor
 plane; the two new files contribute none. Recorded rather than silently carried.
