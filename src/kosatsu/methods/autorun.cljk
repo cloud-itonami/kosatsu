@@ -1,6 +1,6 @@
 (ns kosatsu.methods.autorun
   "autorun.py — kosatsu (高札) AUTONOMOUS crime/sanctions competing-claim heartbeat on the kotoba
-  Datom log. ADR-2606072000. 1:1 Clojure port of `src/kosatsu/methods/autorun.cljc`.
+  Datom log. ADR-2606072000. 1:1 Clojure port of `src/kosatsu/methods/autorun.cljk`.
 
   Each heartbeat the actor runs its whole competing-claim pipeline ITSELF, no human in the loop:
 

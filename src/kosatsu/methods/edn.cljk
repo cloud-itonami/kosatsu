@@ -1,6 +1,6 @@
 (ns kosatsu.methods.edn
   "Minimal EDN reader (subset: [] {} :kw \"str\" num bool nil). ADR-2606072000.
-  Clojure port of `src/kosatsu/methods/_edn.cljc` (itself ported from ake/noroshi/watatsuna).
+  Clojure port of `src/kosatsu/methods/_edn.cljk` (itself ported from ake/noroshi/watatsuna).
 
   The fidelity invariant this preserves: keywords are kept as their \":ns/name\"
   STRINGS, NOT as Clojure keywords. weave.py / test_weave.py key every seed record

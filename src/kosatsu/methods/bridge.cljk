@@ -1,6 +1,6 @@
 (ns kosatsu.methods.bridge
   "bridge.py — 高札 (kosatsu) cross-actor SoS composition. ADR-2606072000.
-  1:1 Clojure port of `src/kosatsu/methods/bridge.cljc`.
+  1:1 Clojure port of `src/kosatsu/methods/bridge.cljk`.
 
   kosatsu is the competing-claim BOARD; the SoS intel value comes from composing its divergence
   view with the sibling accountability/intel actors over the SHARED kotoba Datom log. This module
