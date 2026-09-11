@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; New babashka test for methods/ingest.clj (no test_ingest.py existed; fresh coverage).
 (ns kosatsu.methods.test-ingest
   "Tests for the 高札 (kosatsu) offline designation normalizer (methods/ingest.clj).

@@ -21,9 +21,9 @@
                       ;; JSON reader on purpose; cheshire is here as the INDEPENDENT
                       ;; writer its fixtures are generated with, so the reader is
                       ;; checked against someone else's JSON rather than against
-                      ;; itself. babashka bundles cheshire, which is why `bb test`
+                      ;; itself. babashka bundles cheshire, which is why `kbb -M:test`
                       ;; never needed this and why the gap stayed invisible while
-                      ;; `clojure -M:test` was running 1 namespace of 13.
+                      ;; `kbb -M:test` was running 1 namespace of 13.
                       cheshire/cheshire {:mvn/version "5.13.0"}}
          ;; -r ".*" because 12 of this repo's 13 test namespaces are named
          ;; `kosatsu.methods.test-*`, and the runner's DEFAULT pattern is

@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; New Clojure test for methods/bridge.clj (no Python test existed; fresh coverage).
 (ns kosatsu.methods.test-bridge
   "Tests for the 高札 (kosatsu) cross-actor SoS bridge (methods/bridge.clj).
