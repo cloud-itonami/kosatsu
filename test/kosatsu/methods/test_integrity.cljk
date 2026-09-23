@@ -10,7 +10,7 @@
   computation; this pins that the check finds every dangling asserter/subject and that
   assert-integrity refuses such a graph."
   (:require [kosatsu.methods.weave :as w]
-            [clojure.test :refer [deftest is run-tests]]))
+            [kotoba.test :refer [deftest is run-tests]]))
 
 (def ^:private clean-g
   {"authorities" {"OFAC" {} "EU" {}}

@@ -10,7 +10,7 @@
   NOTE on token shapes: in the ontology/lexicons keywords are kept as ':ns/name' strings (the
   kosatsu.methods.edn reader convention); we lstrip the leading colon to compare against the bare
   tokens, exactly as the Python `k.lstrip(':')` does."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])
             [kosatsu.methods.edn :as edn]

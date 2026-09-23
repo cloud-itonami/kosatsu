@@ -5,7 +5,7 @@
 ;; Pins the tx_cid against python3 (verified byte-identical to kotoba.py on the seed graph).
 ;; ALWAYS writes to a TEMP log path — never mutates committed data files.
 (ns kosatsu.methods.test-kotoba
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.test :refer [deftest is testing run-tests]]
             [clojure.java.io :as io]
             [kotoba.lang.text :as str]
             [kosatsu.methods.edn :as e]
@@ -207,5 +207,5 @@
 ;; ── runner ───────────────────────────────────────────────────────────────────
 
 (when (= *file* (System/getProperty "babashka.file"))
-  (let [{:keys [fail error]} (clojure.test/run-tests 'kosatsu.methods.test-kotoba)]
+  (let [{:keys [fail error]} (kotoba.test/run-tests 'kosatsu.methods.test-kotoba)]
     (System/exit (if (zero? (+ fail error)) 0 1))))
