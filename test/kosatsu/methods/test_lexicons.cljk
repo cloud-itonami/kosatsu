@@ -1,7 +1,7 @@
 (ns kosatsu.methods.test-lexicons
   "test_lexicons.py — 高札 (kosatsu) lexicon well-formedness + NSID parity. ADR-2606072000.
   1:1 Clojure port of src/kosatsu/methods/test_lexicons.cljc (stdlib harness → clojure.test)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             #?(:clj [clojure.java.io :as io])
             [kosatsu.methods.edn :as edn]))
 

@@ -12,7 +12,7 @@
     - no verdict / no per-subject score; the per-subject divergence :kosatsu.div/class is one of
       {contested | unanimous | single-asserter};
     - it does NO external I/O (offline seed, local persist — G7/G8 stay gated)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [clojure.set :as set]
             #?(:clj [clojure.java.io :as io])

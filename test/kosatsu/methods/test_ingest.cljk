@@ -16,7 +16,7 @@
 
   Run as part of the standalone bb test suite."
   (:require [kotoba.lang.text] [kosatsu.methods.ingest :as ingest]
-            [clojure.test :refer [deftest is testing run-tests]]
+            [kotoba.test :refer [deftest is testing run-tests]]
             [clojure.java.io :as io]
             [cheshire.core :as json]))
 
@@ -364,5 +364,5 @@
 ;; ── entry point ───────────────────────────────────────────────────────────────
 
 (when (= *file* (System/getProperty "babashka.file"))
-  (let [{:keys [fail error]} (clojure.test/run-tests 'kosatsu.methods.test-ingest)]
+  (let [{:keys [fail error]} (kotoba.test/run-tests 'kosatsu.methods.test-ingest)]
     (System/exit (if (zero? (+ fail error)) 0 1))))
