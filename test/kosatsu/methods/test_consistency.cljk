@@ -3,7 +3,7 @@
   1:1 Clojure port of src/kosatsu/methods/test_consistency.cljc (stdlib harness → clojure.test)."
   (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])
+            #?(:clj [kotoba.io :as io])
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]))
 
