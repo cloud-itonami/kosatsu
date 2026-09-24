@@ -12,7 +12,7 @@
   tokens, exactly as the Python `k.lstrip(':')` does."
   (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])
+            #?(:clj [kotoba.io :as io])
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]))
 

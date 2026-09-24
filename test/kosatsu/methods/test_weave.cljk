@@ -13,7 +13,7 @@
   those exercise analyze / autorun / ingest / social / bridge modules that are not part of
   this weave-core port."
   (:require [kotoba.lang.text] [kotoba.test :refer [deftest is run-tests]]
-            [clojure.java.io :as io]
+            [kotoba.io :as io]
             [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as w]))
 

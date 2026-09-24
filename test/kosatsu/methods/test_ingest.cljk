@@ -17,7 +17,7 @@
   Run as part of the standalone bb test suite."
   (:require [kotoba.lang.text] [kosatsu.methods.ingest :as ingest]
             [kotoba.test :refer [deftest is testing run-tests]]
-            [clojure.java.io :as io]
+            [kotoba.io :as io]
             [cheshire.core :as json]))
 
 ;; ── helpers ───────────────────────────────────────────────────────────────────
