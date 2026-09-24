@@ -2,7 +2,7 @@
   "test_lexicons.py — 高札 (kosatsu) lexicon well-formedness + NSID parity. ADR-2606072000.
   1:1 Clojure port of src/kosatsu/methods/test_lexicons.cljc (stdlib harness → clojure.test)."
   (:require [kotoba.test :refer [deftest is run-tests]]
-            #?(:clj [clojure.java.io :as io])
+            #?(:clj [kotoba.io :as io])
             [kosatsu.methods.edn :as edn]))
 
 (def ^:private actor-dir (io/file (or (System/getProperty "user.dir") ".")))
@@ -15,7 +15,7 @@
 
 (deftest test-all-lexicons-present
   (doseq [name expected]
-    (is (.exists (io/file lexdir (str name ".edn"))) (str "missing lexicon " name))))
+    (is (io/exists? (io/file lexdir (str name ".edn"))) (str "missing lexicon " name))))
 
 (deftest test-lexicons-well-formed
   (doseq [name expected]
