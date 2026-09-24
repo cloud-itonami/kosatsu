@@ -15,7 +15,7 @@
     test_bridge_join_keys_advisory / test_bridge_tsumugi_en_edges          → need `bridge`
   (bridge / ingest / social are not part of this analyze-driver port, matching the
   rasen/inochi/kabuto precedent.)"
-  (:require [kotoba.test :refer [deftest is run-tests]]
+  (:require [kotoba.io :as kio] [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [clojure.java.io :as io]
             [kosatsu.methods.edn :as edn]
@@ -36,8 +36,8 @@
     (is (str/includes? md "Delisting timeline"))))
 
 (deftest test-analyze-main-writes-file
-  (let [tmp-dir (.toFile (java.nio.file.Files/createTempDirectory
-                          "kosatsu-analyze-" (make-array java.nio.file.attribute.FileAttribute 0)))
+  (let [tmp-dir (kio/temp-dir
+                          "kosatsu-analyze-")
         path (io/file (analyze/main tmp-dir))]
     (try
       (is (.exists path))
