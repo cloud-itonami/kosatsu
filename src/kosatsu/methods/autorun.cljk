@@ -24,7 +24,7 @@
   (:require [kosatsu.methods.edn :as edn]
             [kosatsu.methods.weave :as weave]
             [kosatsu.methods.kotoba :as kotoba]
-            #?(:clj [clojure.java.io :as io])
+            #?(:clj [kotoba.io :as io])
             [kotoba.lang.text :as str]))
 
 (def base-as-of 20260609)
@@ -106,7 +106,7 @@
            cycles (let [v (arg-after "--cycles" nil)] (if v (Long/parseLong v) 3))
            seed-path (io/file (arg-after "--seed" (str seed-default)))
            log-path (io/file (arg-after "--log" (str log-default)))]
-       (when (and (some #{"--fresh"} argv) (.exists log-path)) (.delete log-path))
+       (when (and (some #{"--fresh"} argv) (io/exists? log-path)) (io/delete log-path))
        (let [res (run-autonomous cycles seed-path log-path)]
          (println (str "# kosatsu (高札) — AUTONOMOUS competing-claim over the kotoba Datom log "
                        "(offline seed, LOCAL persist; live ingest / posting stays G7/G8-gated)\n"))
