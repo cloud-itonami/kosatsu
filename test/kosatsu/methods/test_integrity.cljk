@@ -9,7 +9,7 @@
   attributed to — or about — a non-existent entity, which would silently corrupt the divergence
   computation; this pins that the check finds every dangling asserter/subject and that
   assert-integrity refuses such a graph."
-  (:require [kosatsu.methods.weave :as w]
+  (:require [kotoba.lang.error :as kerror] [kosatsu.methods.weave :as w]
             [kotoba.test :refer [deftest is run-tests]]))
 
 (def ^:private clean-g
@@ -33,7 +33,7 @@
     (is (= 1 (get rep "dangling_count")))
     (is (= "asserter" (get d "field")) "the unresolved field is the asserter")
     (is (= "GHOST" (get d "ref")) "and the dangling ref is reported")
-    (is (thrown-with-msg? clojure.lang.ExceptionInfo #"integrity.*dangling" (w/assert-integrity g)))))
+    (is (thrown-with-msg? kerror/ExceptionInfo #"integrity.*dangling" (w/assert-integrity g)))))
 
 (deftest a-dangling-subject-is-detected-and-refused
   (let [g (with-designations clean-g [{":designation/id" "D4" ":designation/asserter" "OFAC"
@@ -41,7 +41,7 @@
         d (first (get (w/check-integrity g) "dangling"))]
     (is (= "subject" (get d "field")))
     (is (= "NOBODY" (get d "ref")))
-    (is (thrown? clojure.lang.ExceptionInfo (w/assert-integrity g)))))
+    (is (thrown? kerror/ExceptionInfo (w/assert-integrity g)))))
 
 (deftest both-ends-dangling-counts-two-and-only-dangling-ones-count
   ;; one designation with BOTH a bad asserter and a bad subject → 2 dangling

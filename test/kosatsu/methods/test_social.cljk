@@ -14,7 +14,7 @@
     G3 raise:          _post with < 2 sources throws ex-info with the G3 message
 
   Run as part of the standalone bb test suite."
-  (:require [kosatsu.methods.social :as social]
+  (:require [kotoba.lang.error :as kerror] [kosatsu.methods.social :as social]
             [kosatsu.methods.weave :as w]
             [kosatsu.methods.edn :as e]
             [kotoba.io :as io]
@@ -168,7 +168,7 @@
 (deftest g3-raise-fewer-than-2-sources
   ;; _post with only 1 source must raise ex-info with the G3 message.
   (is (thrown-with-msg?
-       clojure.lang.ExceptionInfo
+       kerror/ExceptionInfo
        #"G3: a post needs ≥2 primary-source citations"
        (#'social/post "x" "sub" "body" ["https://ofac.treasury.gov/"]))
       "G3: a post with <2 sources must raise"))
@@ -176,7 +176,7 @@
 (deftest g3-raise-zero-sources
   ;; _post with 0 sources must also raise.
   (is (thrown-with-msg?
-       clojure.lang.ExceptionInfo
+       kerror/ExceptionInfo
        #"G3: a post needs ≥2 primary-source citations"
        (#'social/post "x" "sub" "body" []))
       "G3: a post with 0 sources must raise"))
