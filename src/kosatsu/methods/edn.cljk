@@ -5,7 +5,7 @@
   The fidelity invariant this preserves: keywords are kept as their \":ns/name\"
   STRINGS, NOT as Clojure keywords. weave.py / test_weave.py key every seed record
   on string keys (\":authority/id\", \":designation/asserter\", \":designation/status\",
-  …) and the Python `:`-strings stay strings (root CLAUDE.md convention) — so the
+  …) and the Python `:`-strings stay strings (root AGENTS.md convention) — so the
   loader must yield the same string shape the Python `load_edn` does, byte-for-byte,
   or the offline analyzer would key on the wrong thing.
 
